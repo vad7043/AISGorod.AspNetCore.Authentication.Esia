@@ -17,4 +17,7 @@
     <ItemGroup Label="net9.0" Condition="'$(TargetFramework)' == 'net9.0'">
         <PackageVersion Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="[9.0.0,10)"/>
     </ItemGroup>
+    <ItemGroup Label="net10.0" Condition="'$(TargetFramework)' == 'net10.0'">
+        <PackageVersion Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="[10.0.0,11)"/>
+    </ItemGroup>
 </Project>
