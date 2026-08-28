@@ -1,5 +1,5 @@
+﻿using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Security.Cryptography.X509Certificates;
 
 namespace AISGorod.AspNetCore.Authentication.Esia.EsiaEnvironment;
 
@@ -11,10 +11,8 @@ internal static class X509CertificateUtils
     /// <summary>
     /// Загрузка сертификата.
     /// </summary>
-    /// <param name="pem">Сертификат.</param>
+    /// <param name="pem">Сертификат в формате PEM.</param>
     /// <returns><see cref="X509Certificate2"/>.</returns>
     internal static X509Certificate2 LoadCertificate(string pem) =>
         X509CertificateLoader.LoadCertificate(Encoding.UTF8.GetBytes(pem));
 }
-
-

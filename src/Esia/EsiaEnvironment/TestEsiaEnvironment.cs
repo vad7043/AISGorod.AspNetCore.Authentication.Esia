@@ -10,20 +10,24 @@ namespace AISGorod.AspNetCore.Authentication.Esia.EsiaEnvironment;
 public class TestEsiaEnvironment : IEsiaEnvironment
 {
     /// <summary>
-    /// Сертификат среды ЕСИА.
-    /// Устарело: используйте <see cref="EsiaCertificates"/>.
+    /// Сертификаты тестовой среды ЕСИА: сначала актуальный, затем предыдущие.
+    /// Загружаются один раз, так как <see cref="X509Certificate2"/> удерживает неуправляемые ресурсы.
     /// </summary>
-    [Obsolete("Свойство устарело. Используйте EsiaCertificates.")]
-    public X509Certificate2 EsiaCertificate =>
-        X509CertificateUtils.LoadCertificate(Esia.EsiaCertificates.TestCertificate);
+    private static readonly X509Certificate2[] Certificates =
+    [
+        X509CertificateUtils.LoadCertificate(Esia.EsiaCertificates.TestCertificate2024)
+    ];
+
+    /// <summary>
+    /// Сертификат среды ЕСИА.
+    /// </summary>
+    [Obsolete("Свойство устарело и будет удалено в следующей мажорной версии. Используйте EsiaCertificates.")]
+    public X509Certificate2 EsiaCertificate => Certificates[0];
 
     /// <summary>
     /// Сертификаты среды ЕСИА.
     /// </summary>
-    public IReadOnlyCollection<X509Certificate2> EsiaCertificates =>
-    [
-        X509CertificateUtils.LoadCertificate(Esia.EsiaCertificates.TestCertificate)
-    ];
+    public IReadOnlyCollection<X509Certificate2> EsiaCertificates => Certificates;
 
     /// <summary>
     /// Базовый URL для запросов.
@@ -54,5 +58,4 @@ public class TestEsiaEnvironment : IEsiaEnvironment
     /// Issuer маркеров доступа.
     /// </summary>
     public string Issuer => "http://esia-portal1.test.gosuslugi.ru/";
-
 }
