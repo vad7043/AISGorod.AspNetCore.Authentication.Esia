@@ -15,8 +15,8 @@ public class ProductionEsiaEnvironment : IEsiaEnvironment
     /// </summary>
     private static readonly X509Certificate2[] Certificates =
     [
-        X509CertificateUtils.LoadCertificate(Esia.EsiaCertificates.ProductionCertificate2025),
-        X509CertificateUtils.LoadCertificate(Esia.EsiaCertificates.ProductionCertificate2024)
+        X509CertificateUtils.LoadCertificate(Esia.EsiaCertificates.ProductionCertificate2026),
+        X509CertificateUtils.LoadCertificate(Esia.EsiaCertificates.ProductionCertificate2025)
     ];
 
     /// <summary>
